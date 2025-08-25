@@ -5,6 +5,16 @@
   <title>Auth</title>
 </head>
 <body>
+  @auth
+  <div>
+    <p>Welcome, {{ auth()->user()->first_name }}!</p>
+    <form action="/logout" method="POST">
+      @csrf
+      <button type="submit">Log Out</button>
+    </form>
+  </div>
+
+  @else
   <div class="wrap">
     <!-- SIGN UP -->
     <fieldset>
@@ -63,5 +73,6 @@
       </form>
     </fieldset>
   </div>
+  @endauth
 </body>
 </html>
