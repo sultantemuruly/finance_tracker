@@ -9,13 +9,13 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController
 {
-    public function signUp(Request $request)
+    public function signup(Request $request)
     {
         $validated = $request->validate([
-            'first_name' => ['required','string','max:255'],
-            'second_name' => ['required','string','max:255'],
+            'first_name' => ['required','string', 'max:255'],
+            'second_name' => ['required','string', 'max:255'],
             'email'      => ['required','email','max:255','unique:users,email'],
-            'password'   => ['required', Password::min(8), 'confirmed'],
+            'password'   => ['required', Password::min(8)],
         ]);
 
         $user = User::create([
@@ -25,6 +25,20 @@ class UserController
             'password'   => $validated['password'], // gets hashed by the cast
         ]);
 
-         return redirect()->route('/')->with('status', 'Welcome, '.$user->first_name.'!');
+         return redirect('/');
+    }
+
+    public function login(Request $request)
+    {
+        $validated = $request->validate([
+            'login_email'      => ['required','email','max:255','unique:users,email'],
+            'login_password'   => ['required', Password::min(8), 'confirmed'],
+        ]);
+
+        if (auth()->attempt(['email' => $incomingData['login_email'], 'password' => $incomingData['login_password']])) {
+            $request->session()->regenerate();
+        }
+
+        return redirect('/');
     }
 }

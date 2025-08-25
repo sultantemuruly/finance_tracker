@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/sign-up', [UserController::class, 'signUp']);
+Route::post('/sign-up', [UserController::class, 'signup']);
+Route::post('/login', [UserController::class, 'login']);
