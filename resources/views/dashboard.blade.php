@@ -42,6 +42,7 @@
                     @method('DELETE')
                     <button type="submit">Delete</button>
                 </form>
+                <a href="/edit/{{$record->id}}"><button>Edit</button></a>
             </div>
         @endforeach
     </div>

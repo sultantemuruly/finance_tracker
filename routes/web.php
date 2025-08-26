@@ -17,4 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/record',   [RecordController::class, 'store'])->name('records.store');
     Route::delete('/delete/{record_id}',   [RecordController::class, 'delete'])->name('records.delete');
+    Route::put('/edit/{record_id}',   [RecordController::class, 'edit'])->name('records.edit');
+    Route::get('/edit/{record_id}', [RecordController::class, 'showEditScreen'])->name('posts.edit');
+    Route::put('/edit/{record_id}', [RecordController::class, 'update'])->name('posts.update');
 });
