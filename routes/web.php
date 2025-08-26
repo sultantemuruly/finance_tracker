@@ -16,4 +16,5 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/record',   [RecordController::class, 'store'])->name('records.store');
+    Route::delete('/delete/{record_id}',   [RecordController::class, 'delete'])->name('records.delete');
 });

@@ -37,6 +37,11 @@
                 <p>Date: {{ $record->date }}</p>
                 <p>Type: {{ ucfirst($record->type) }}</p>
                 <p>Category: {{ $record->category }}</p>
+                <form action="/delete/{{$record->id}}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
             </div>
         @endforeach
     </div>

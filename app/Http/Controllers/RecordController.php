@@ -24,14 +24,14 @@ class RecordController
         return redirect()->route('dashboard');
     }
 
-    // public function delete(Request $request, Record $record)
-    // {
-    //     if ($record->user_id !== $request->user()->id) {
-    //         abort(403);
-    //     }
+    public function delete(Request $request, $id)
+    {
+        $record = Record::where('id', $id)
+        ->where('user_id', $request->user()->id)
+        ->firstOrFail();
 
-    //     $record->delete();
+        $record->delete();
 
-    //     return redirect()->route('dashboard');
-    // }
+        return redirect()->route('dashboard');
+    }
 }
