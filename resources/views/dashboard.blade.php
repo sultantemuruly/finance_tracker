@@ -28,5 +28,17 @@
             <button type="submit">Record</button>
         </form>
     </div>
+    <div>
+        @foreach ($records as $record)
+            <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px; max-width: 600px;">
+                <h3>{{ $record->title }}</h3>
+                <p>{{ $record->description }}</p>
+                <p>Amount: ${{ $record->amount }}</p>
+                <p>Date: {{ $record->date }}</p>
+                <p>Type: {{ ucfirst($record->type) }}</p>
+                <p>Category: {{ $record->category }}</p>
+            </div>
+        @endforeach
+    </div>
 </body>
 </html>

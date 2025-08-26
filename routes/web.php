@@ -13,6 +13,7 @@ Route::post('/sign-up', [UserController::class, 'signup']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::post('/record', [RecordController::class, 'store']);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/record',   [RecordController::class, 'store'])->name('records.store');
+});

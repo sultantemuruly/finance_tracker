@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController
+class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
-        if (!$request->user()) {
-            return redirect()->route('home');
-        }
+        $records = $request->user()
+            ->records()              
+            ->latest('date')
+            ->paginate(10);         
 
-        return view('dashboard');
+        return view('dashboard', compact('records'));
     }
 }
