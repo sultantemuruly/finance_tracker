@@ -12,6 +12,8 @@
       @csrf
       <button type="submit">Log Out</button>
     </form>
+
+    <a href="/dashboard"><button>Dashboard</button></a>
   </div>
 
   @else
