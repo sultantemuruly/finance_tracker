@@ -12,10 +12,10 @@
                 <h3>{{ $user->first_name }} {{ $user->second_name }}</h3>
                 <p>Email: {{ $user->email }}</p>
                 <p>Registered at: {{ $user->created_at }}</p>
-                {{-- <form action="/profile/{{$user->id}}" method="GET" style="display: inline;">
+                <form action="/profile/{{$user->id}}" method="GET" style="display: inline;">
                     @csrf
                     <button type="submit">View Profile</button>
-                </form> --}}
+                </form>
             </div>
         @endforeach
     </div>

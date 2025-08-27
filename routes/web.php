@@ -24,4 +24,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/record/filter_by_type', [RecordController::class, 'filterByType'])->name('records.filter_by_type');
 
     Route::get('/profile', [ProfileController::class, 'showUsers'])->name('show_users');
+    Route::get('/profile/{user_id}', [ProfileController::class, 'showUserProfile'])->name('show_user_profile');
 });
