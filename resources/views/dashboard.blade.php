@@ -9,6 +9,13 @@
     <h1>Dashboard</h1>
     <div style="margin-bottom: 0%; display: flex; justify-content: space-between; align-items: center;">
         <p>Welcome to your dashboard, {{ auth()->user()->first_name }}!</p>
+        @php
+            $base = rtrim(config('filesystems.disks.azure.url'), '/'); 
+            $path = auth()->user()->avatar;
+            $avatarUrl = $path ? $base.'/'.ltrim($path, '/') : asset('images/default_avatar.png');
+        @endphp
+        <img src="{{ $avatarUrl }}" alt="Avatar"
+            style="height:48px;width:48px;border-radius:9999px;object-fit:cover" />
         <a href="/" style="text-decoration:none;">
             <button type="button">Home</button>
         </a>

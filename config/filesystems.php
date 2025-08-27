@@ -53,6 +53,7 @@ return [
             'key' => env('AZURE_STORAGE_KEY'),
             'container' => env('AZURE_STORAGE_CONTAINER'),
             'endpoint_suffix' => env('AZURE_STORAGE_ENDPOINT_SUFFIX', 'core.windows.net'),
+            'url'             => env('AZURE_PUBLIC_URL'),
         ],
 
         // 's3' => [
