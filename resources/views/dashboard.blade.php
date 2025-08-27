@@ -29,6 +29,19 @@
         </form>
     </div>
     <div>
+        <h2>Filter</h2>
+        <form action="/record/filter_by_type" method="POST" style="display: inline;">
+            @csrf
+            <label>
+                <input type="radio" name="type" value="income" required> Income
+            </label>
+            <label>
+                <input type="radio" name="type" value="expense" required> Expense
+            </label>
+            <button type="submit">Filter by Type</button>
+        </form>
+    </div>
+    <div>
         @foreach ($records as $record)
             <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px; max-width: 600px;">
                 <h3>{{ $record->title }}</h3>

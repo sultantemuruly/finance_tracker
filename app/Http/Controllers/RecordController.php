@@ -55,6 +55,14 @@ class RecordController
         return view('edit', compact('record'));
     }
 
+    public function filterByType(Request $request)
+    {
+        $type = $request->input('type');
+        $records = Record::where('type', $type)->get();
+
+        return view('dashboard', compact('records'));
+    }
+
     public function update(Request $request, $id)
     {
         $record = Record::where('id', $id)
