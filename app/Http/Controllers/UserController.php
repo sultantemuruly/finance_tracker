@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Storage;
 
 class UserController
 {
@@ -46,5 +47,22 @@ class UserController
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function uploadImage(Request $request, $user_id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $fileName = "avatars/{$user_id}/" . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+
+        Storage::disk('azure')->put($fileName, file_get_contents($request->file('image')));
+
+        $user = User::findOrFail($user_id);
+        $user->avatar = $fileName; 
+        $user->save();
+
+        return back()->with('success', 'Avatar uploaded successfully!');
     }
 }
